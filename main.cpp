@@ -9,14 +9,17 @@ void mergeSort(T* arr,int e, int b = 1)
         int d = (e-b)/2;//中心点偏移
         mergeSort(arr, b+d, b); 
         mergeSort(arr, e, b+d+1);
-        T* cp = new T[e-b+1];//开辟临时空间
-        copy(arr+(b--)-1, arr+e, cp);
-        T* xp = cp;//左边指针头
-        T* mp = cp + d;//中间点指针
-        T* yp = mp + 1;//右边指针头
-        while(b<e){
-            arr[b++] = (xp<=mp && *xp>*yp) ? *(xp++) : *(yp++);
-        };
+        if(arr[b+d-1]<arr[b+d])//优化
+        {
+            T* cp = new T[e-b+1];//开辟临时空间
+            copy(arr+(b--)-1, arr+e, cp);
+            T* xp = cp;//左边指针头
+            T* mp = cp + d;//中间点指针
+            T* yp = mp + 1;//右边指针头
+            while(b<e){
+                arr[b++] = (xp<=mp && *xp>*yp) ? *(xp++) : *(yp++);
+            };
+        }
     }
 }
 
