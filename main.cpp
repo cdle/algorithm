@@ -23,6 +23,28 @@ void mergeSort(T* arr,int e, int b = 1)
     }
 }
 
+template<typename T>
+void mergeSortUB(T* arr,int n)
+{
+    for(int t =1; t<=n; t+=t)
+    {
+        for(int r=0; r+t < n; r+=t+t)
+        {
+            int b = r+1;
+            int e = r+t+t;
+            int d = (e-b)/2;
+            T* cp = new T[e-b+1];
+            copy(arr+(b--)-1, arr+e, cp);
+            T* xp = cp;
+            T* mp = cp + d;
+            T* yp = mp + 1;
+            while(b<e){
+                arr[b++] = (xp<=mp && *xp>*yp) ? *(xp++) : *(yp++);
+            };
+        }
+    }
+}
+
 int main()
 {
     int arr[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}; 
