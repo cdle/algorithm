@@ -19,6 +19,7 @@ void mergeSort(T* arr,int e, int b = 1)
             while(b<e){
                 arr[b++] = (xp<=mp && *xp>*yp) ? *(xp++) : *(yp++);
             };
+            delete[] cp;
         }
     }
 }
@@ -43,6 +44,7 @@ void mergeSortUB(T* arr,int n)
                 while(b<e){
                     arr[b++] = (xp<=mp && *xp>*yp) ? *(xp++) : *(yp++);
                 };
+                delete[] cp;
             }
         }
     }
