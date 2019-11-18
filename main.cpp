@@ -31,16 +31,19 @@ void mergeSortUB(T* arr,int n)
         for(int r=0; r+t < n; r+=t+t)
         {
             int b = r+1;
-            int e = r+t+t;
-            int d = (e-b)/2;
-            T* cp = new T[e-b+1];
-            copy(arr+(b--)-1, arr+e, cp);
-            T* xp = cp;
-            T* mp = cp + d;
-            T* yp = mp + 1;
-            while(b<e){
-                arr[b++] = (xp<=mp && *xp>*yp) ? *(xp++) : *(yp++);
-            };
+            int e = min(r+t+t,n);
+            int d = t-1;
+            if(arr[b+d-1]<arr[b+d])
+            {
+                T* cp = new T[e-b+1];
+                copy(arr+(b--)-1, arr+e, cp);
+                T* xp = cp;
+                T* mp = cp + d;
+                T* yp = mp + 1;
+                while(b<e){
+                    arr[b++] = (xp<=mp && *xp>*yp) ? *(xp++) : *(yp++);
+                };
+            }
         }
     }
 }
