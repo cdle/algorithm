@@ -50,6 +50,24 @@ void mergeSortUB(T* arr,int n)
     }
 }
 
+template<typename T>
+void quickSort(T *arr,int n,int j=1)
+{
+    if(n<=1)return;
+    int v = arr[j-1];
+    int q = j;
+    for(int i=0; i<n-1; i++)
+    {
+        if(v<arr[q+i])
+        {
+            swap(arr[j++],arr[q+i]);
+        }
+    }
+    swap(arr[q-1],arr[j-1]);
+    quickSort(arr,j-q,q);
+    quickSort(arr,n-j+q-1,j+1);
+}
+
 int main()
 {
     int arr[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}; 
