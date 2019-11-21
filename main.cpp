@@ -68,6 +68,58 @@ void quickSort(T *arr,int n,int j=1)
     quickSort(arr,n-j+q-1,j+1);
 }
 
+template<typename T>
+void quickSort2Ways(T *arr,int m,int n)
+{
+    if(n-m==1)
+    {
+        if(arr[m]<arr[n])
+        {
+            swap(arr[m],arr[n]);
+        }
+    }else if(n>m){
+        int i = m+1;
+        int j = n;
+        int v = arr[m];
+        while(true)
+        {
+            while(arr[i++]>v);
+            while(arr[j--]<v);
+            if(i-1>j+1)break;
+            swap(arr[i-1],arr[j+1]);
+        };
+        swap(arr[i-2],arr[m]);
+        quickSort2Ways(arr,m,i-3);
+        quickSort2Ways(arr,i-1,n);
+    }
+}
+
+template<typename T>
+void quickSort3Ways(T *arr,int m,int n)
+{
+    int l = m;
+    int p = m+1;
+    int r = n+1;
+    int v = arr[m];
+    while(p<r){
+        if(arr[p]>v){
+            swap(arr[l+1],arr[p]);
+            l++;
+            p++;
+        }else if(arr[p]==v){
+            p++;
+        }else{
+            swap(arr[p],arr[r-1]);
+            r--;
+        }
+    }
+    if(l>m){
+        swap(arr[m],arr[l]);
+        quickSort3Ways(arr,m,l-1);
+    }
+    if(r<n)quickSort3Ways(arr,r,n);
+}
+
 int main()
 {
     int arr[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}; 
