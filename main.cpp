@@ -1,21 +1,22 @@
 #include<iostream>
 using namespace std;
 
+//归并排序
 template<typename T>
 void mergeSort(T* arr,int e, int b = 1)
 {
     if(e!=b)
     {
-        int d = (e-b)/2;//中心点偏移
+        int d = (e-b)/2;
         mergeSort(arr, b+d, b); 
         mergeSort(arr, e, b+d+1);
         if(arr[b+d-1]<arr[b+d])//优化
         {
-            T* cp = new T[e-b+1];//开辟临时空间
+            T* cp = new T[e-b+1];
             copy(arr+(b--)-1, arr+e, cp);
-            T* xp = cp;//左边指针头
-            T* mp = cp + d;//中间点指针
-            T* yp = mp + 1;//右边指针头
+            T* xp = cp;
+            T* mp = cp + d;
+            T* yp = mp + 1;
             while(b<e){
                 arr[b++] = (xp<=mp && *xp>*yp) ? *(xp++) : *(yp++);
             };
@@ -24,6 +25,7 @@ void mergeSort(T* arr,int e, int b = 1)
     }
 }
 
+//自下而上的归并排序
 template<typename T>
 void mergeSortUB(T* arr,int n)
 {
@@ -50,6 +52,7 @@ void mergeSortUB(T* arr,int n)
     }
 }
 
+//快速排序
 template<typename T>
 void quickSort(T *arr,int n,int j=1)
 {
@@ -68,6 +71,7 @@ void quickSort(T *arr,int n,int j=1)
     quickSort(arr,n-j+q-1,j+1);
 }
 
+//双路快速排序
 template<typename T>
 void quickSort2Ways(T *arr,int m,int n)
 {
@@ -94,6 +98,7 @@ void quickSort2Ways(T *arr,int m,int n)
     }
 }
 
+//三路快速排序
 template<typename T>
 void quickSort3Ways(T *arr,int m,int n)
 {
