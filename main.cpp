@@ -125,6 +125,34 @@ void quickSort3Ways(T *arr,int m,int n)
     if(r<n)quickSort3Ways(arr,r,n);
 }
 
+template<typename Item>
+inline void shiftDown(Item* arr,int n,int k)
+{
+    int j = 2*k+1;
+    while(j<=n-1){
+        if(j+1<=n-1 && arr[j]<arr[j+1])j++;
+        if(arr[k]>=arr[j])break;
+        swap(arr[k], arr[j]);
+        k = j;
+    }
+}
+
+//堆排序
+template<typename Item>
+void heapSort(Item* arr,int n)
+{
+    int l = (n-2)/2;
+    for(int i=0; i<=l; i++)
+    {
+        shiftDown(arr,n,i);
+    }
+    for(int i=1; i<n; i++)
+    {
+        swap(arr[0],arr[n-i]);
+        shiftDown(arr,n-i,0);
+    }
+}
+
 int main()
 {
     int arr[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}; 
