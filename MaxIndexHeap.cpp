@@ -89,7 +89,7 @@ public:
         assert(count>=1);
         swap(indexs[1],indexs[count]);
         reverse[indexs[count]]=1;
-        reverse[indexs[1]]=0;
+        reverse[indexs[1]]=count;
         count--;
         shiftDown(1);
         return indexs[count+1]-1;
