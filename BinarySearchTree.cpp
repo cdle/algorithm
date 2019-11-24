@@ -89,7 +89,7 @@ public:
         return false;
     }
 
-    Value* search(Key key)
+    Value* search(Key key)//比递归简洁
     {
         Node* p = root;
         while(p!=NULL)
